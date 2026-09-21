@@ -1,4 +1,7 @@
 import { motion } from 'framer-motion';
+import ragImage from '../assets/rag.png';
+import portfolioImage from '../assets/portfolio.png';
+
 const Projects = () => {
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -21,12 +24,20 @@ const Projects = () => {
 
   const projects = [
     {
-      title: 'AI Technical Tutor',
-      description: 'Interactive full-stack learning platform built with a React frontend and FastAPI backend connected to OpenRouter and local Ollama LLM models.',
-      technologies: ['React', 'FastAPI', 'Python', 'OpenRouter', 'Ollama', 'Tailwind CSS'],
-      image: 'https://via.placeholder.com/640x420/4f46e5/ffffff?text=AI+Technical+Tutor',
-      live: '#',
-      github: '#'
+      title: 'Full-Stack Portfolio AI Avatar',
+      description: 'Interactive developer portfolio featuring a custom conversational AI assistant that dynamically queries background, skills, and project data.',
+      technologies: ['React', 'FastAPI', 'Python', 'Gemini API', 'Tailwind CSS'],
+      image: portfolioImage,
+      live: 'https://portfolio-one-wheat-34.vercel.app/',
+      github: 'https://github.com/ujjwal-0927/FullStack-Portfolio'
+    },
+    {
+      title: 'Hybrid RAG Engine',
+      description: 'Production-ready document Q&A engine combining dense vector search, sparse lexical retrieval (BM25), and Cohere re-ranking with real-time SSE token streaming.',
+      technologies: ['FastAPI', 'React', 'ChromaDB', 'Cohere API', 'Gemini 3.6 Flash', 'Tailwind CSS'],
+      image: ragImage,
+      live: 'https://rag-frontend-rust.vercel.app/',
+      github: 'https://github.com/ujjwal-0927/rag-frontend'
     },
     {
       title: 'Healthcare Booking Platform (Flebo.in)',
@@ -35,14 +46,6 @@ const Projects = () => {
       image: 'https://via.placeholder.com/640x420/7c3aed/ffffff?text=Healthcare+Aggregator',
       live: '#',
       github: '#'
-    },
-    {
-      title: 'Full-Stack Portfolio AI Avatar',
-      description: 'Interactive developer portfolio featuring a custom conversational AI assistant that dynamically queries background, skills, and project data.',
-      technologies: ['React', 'FastAPI', 'Python', 'Gemini API', 'Tailwind CSS'],
-      image: '/portfolio.png', // Quoted string path to public/portfolio.png
-      live: '#',
-      github: 'https://github.com/ujjwal-0927/FullStack-Portfolio'
     },
     {
       title: 'Merchant Checkout & Settlement Engine',
