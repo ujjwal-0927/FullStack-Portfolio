@@ -28,7 +28,7 @@ const Projects = () => {
       description: 'Interactive developer portfolio featuring a custom conversational AI assistant that dynamically queries background, skills, and project data.',
       technologies: ['React', 'FastAPI', 'Python', 'Gemini API', 'Tailwind CSS'],
       image: portfolioImage,
-      live: 'https://portfolio-one-wheat-34.vercel.app/',
+      live: 'https://ujjwaldev.me/',
       github: 'https://github.com/ujjwal-0927/FullStack-Portfolio'
     },
     {
@@ -65,7 +65,7 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="bg-slate-950 py-16 sm:pt-20 ">
+    <section id="projects" className="bg-slate-950 pb-16 sm:pt-20 ">
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
         {/* Header Section */}
         <motion.div 
