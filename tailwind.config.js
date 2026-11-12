@@ -7,9 +7,16 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        display: ['"Instrument Serif"', 'serif'],
+        sans: ['Geist', 'system-ui', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'monospace'],
       },
       colors: {
+        paper: '#F3F0E8',
+        ink: '#151412',
+        accent: '#E4572E',
+        mute: '#6B675E',
+        rule: '#D9D4C7',
         primary: {
           50: '#f0f9ff',
           100: '#e0f2fe',

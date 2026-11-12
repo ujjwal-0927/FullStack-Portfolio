@@ -13,15 +13,15 @@ const Contact = lazy(() => import('./components/Contact.jsx'));
 
 const SectionLoader = () => (
   <div className="flex h-32 w-full items-center justify-center">
-    <div className="h-6 w-6 animate-spin rounded-full border-2 border-indigo-500 border-t-transparent" />
+  <div className="h-6 w-6 animate-spin rounded-full border-2 border-accent border-t-transparent" />
   </div>
 );
 
 function App() {
   return (
-    <div className="App bg-slate-950 text-slate-100 min-h-screen selection:bg-indigo-500 selection:text-white">
+    <div className="App min-h-screen bg-paper text-ink selection:bg-accent selection:text-paper">
       <Header />
-      <main className="pt-20">
+      <main>
         <Hero />
         <Suspense fallback={<SectionLoader />}>
           <About />

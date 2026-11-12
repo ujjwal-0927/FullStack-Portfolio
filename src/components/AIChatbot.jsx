@@ -1,7 +1,7 @@
 // src/components/AIChatbot.jsx
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaRobot, FaTimes, FaPaperPlane } from 'react-icons/fa';
+import { FaTimes, FaPaperPlane } from 'react-icons/fa';
 import chatbotIcon from '../assets/chatbot.png';
 
 export default function AIChatbot() {
@@ -87,7 +87,7 @@ export default function AIChatbot() {
           }
         }
       }
-    } catch (err) {
+    } catch {
       setMessages((prev) => {
         const updated = [...prev];
         const lastIndex = updated.length - 1;
@@ -112,16 +112,15 @@ export default function AIChatbot() {
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
-            whileHover={{ scale: 1.08 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsOpen(true)}
-            className="relative flex items-center justify-center h-14 w-14 rounded-full bg-slate-900 border border-indigo-500/40 p-1.5 shadow-2xl shadow-indigo-600/50 backdrop-blur-xl transition-all duration-300 group"
+            className="relative flex items-center justify-center h-14 w-14 border border-ink bg-paper p-1.5 shadow-lg transition-all duration-300 group"
             aria-label="Open AI Assistant"
           >
             {/* Status Ping Pulse Indicator */}
             <span className="absolute top-0 right-0 flex h-3.5 w-3.5 -mt-0.5 -mr-0.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-emerald-500 border-2 border-slate-950"></span>
+              <span className="relative inline-flex h-3.5 w-3.5 rounded-full border-2 border-paper bg-emerald-500"></span>
             </span>
 
             {/* Chatbot Image Asset */}
@@ -142,17 +141,17 @@ export default function AIChatbot() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ duration: 0.25, ease: 'easeOut' }}
-            className="w-80 sm:w-96 h-[500px] bg-slate-950/95 border border-slate-800 rounded-3xl shadow-2xl shadow-black/80 flex flex-col overflow-hidden backdrop-blur-2xl"
+            className="flex h-[500px] w-80 flex-col overflow-hidden border border-rule bg-paper shadow-xl sm:w-96"
           >
             
             {/* Header */}
-            <div className="p-4 bg-slate-900/90 border-b border-slate-800 flex justify-between items-center">
+            <div className="flex items-center justify-between border-b border-rule bg-paper p-4">
               <div className="flex items-center gap-2.5">
-                <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-indigo-500/10 border border-indigo-500/20 overflow-hidden">
+                <div className="flex h-8 w-8 items-center justify-center overflow-hidden border border-rule">
                   <img src={chatbotIcon} alt="AI Avatar" className="h-full w-full object-cover" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-slate-100 text-xs sm:text-sm">AI Portfolio Assistant</h3>
+                  <h3 className="font-display text-xl text-ink">AI Portfolio Assistant</h3>
                   <p className="text-[10px] text-emerald-400 flex items-center gap-1 font-mono">
                     <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 inline-block" /> Powered by FastAPI
                   </p>
@@ -161,7 +160,7 @@ export default function AIChatbot() {
               
               <button
                 onClick={() => setIsOpen(false)}
-                className="text-slate-400 hover:text-white h-7 w-7 rounded-lg flex items-center justify-center hover:bg-slate-800 transition text-xs"
+                className="flex h-7 w-7 items-center justify-center text-mute transition hover:text-accent"
                 aria-label="Close chat"
               >
                 <FaTimes />
@@ -176,17 +175,17 @@ export default function AIChatbot() {
                   className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   <div
-                    className={`max-w-[85%] text-xs sm:text-sm px-3.5 py-2.5 rounded-2xl whitespace-pre-wrap leading-relaxed ${
+                    className={`max-w-[85%] text-xs sm:text-sm px-3.5 py-2.5 whitespace-pre-wrap leading-relaxed ${
                       msg.sender === 'user'
-                        ? 'bg-indigo-600 text-white rounded-br-none shadow-md shadow-indigo-600/20 font-medium'
-                        : 'bg-slate-900 text-slate-200 border border-slate-800 rounded-bl-none'
+                        ? 'bg-ink text-paper rounded-br-none font-medium'
+                        : 'border border-rule bg-[#ECE8DE] text-ink rounded-bl-none'
                     }`}
                   >
                     {msg.text || (loading && idx === messages.length - 1 ? (
-                      <span className="flex items-center gap-1 text-slate-400 py-0.5">
-                        <span className="h-1.5 w-1.5 rounded-full bg-indigo-400 animate-bounce" />
-                        <span className="h-1.5 w-1.5 rounded-full bg-indigo-400 animate-bounce [animation-delay:0.2s]" />
-                        <span className="h-1.5 w-1.5 rounded-full bg-indigo-400 animate-bounce [animation-delay:0.4s]" />
+                      <span className="flex items-center gap-1 py-0.5 text-mute">
+                      <span className="h-1.5 w-1.5 rounded-full bg-accent animate-bounce" />
+                      <span className="h-1.5 w-1.5 rounded-full bg-accent animate-bounce [animation-delay:0.2s]" />
+                      <span className="h-1.5 w-1.5 rounded-full bg-accent animate-bounce [animation-delay:0.4s]" />
                       </span>
                     ) : "")}
                   </div>
@@ -202,7 +201,7 @@ export default function AIChatbot() {
                   <button
                     key={i}
                     onClick={() => handleSend(null, prompt)}
-                    className="text-[11px] font-mono text-indigo-300 bg-indigo-500/10 border border-indigo-500/20 hover:bg-indigo-500/20 rounded-lg px-2.5 py-1 transition text-left"
+                    className="border border-rule px-2.5 py-1 text-left font-mono text-[11px] text-accent transition hover:border-accent"
                   >
                     {prompt}
                   </button>
@@ -211,18 +210,18 @@ export default function AIChatbot() {
             )}
 
             {/* Input Footer Form */}
-            <form onSubmit={(e) => handleSend(e, null)} className="p-3 bg-slate-900/80 border-t border-slate-800 flex gap-2">
+            <form onSubmit={(e) => handleSend(e, null)} className="flex gap-2 border-t border-rule bg-paper p-3">
               <input
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Ask about skills, experience..."
-                className="flex-1 bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs sm:text-sm text-slate-100 placeholder-slate-500 outline-none focus:border-indigo-500/60 focus:ring-1 focus:ring-indigo-500/30"
+                className="flex-1 border border-rule bg-transparent px-3.5 py-2 text-xs text-ink placeholder-mute outline-none focus:border-accent sm:text-sm"
               />
               <button
                 type="submit"
                 disabled={loading || !input.trim()}
-                className="bg-indigo-600 hover:bg-indigo-500 disabled:opacity-40 text-white text-xs sm:text-sm px-3.5 py-2 rounded-xl font-medium transition flex items-center justify-center"
+                className="flex items-center justify-center bg-ink px-3.5 py-2 text-xs font-medium text-paper transition hover:bg-accent disabled:opacity-40 sm:text-sm"
               >
                 <FaPaperPlane className="text-xs" />
               </button>
