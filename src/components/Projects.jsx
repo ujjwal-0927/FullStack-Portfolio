@@ -1,179 +1,38 @@
 import { motion } from 'framer-motion';
+import { FaArrowUp } from 'react-icons/fa';
 import ragImage from '../assets/rag.png';
 import portfolioImage from '../assets/portfolio.png';
 
-const Projects = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
-  };
+const projects = [
+  ['Full-Stack Portfolio AI Avatar', 'Interactive developer portfolio featuring a conversational AI assistant that queries background, skills, and project data.', ['React', 'FastAPI', 'Python', 'Gemini API'], portfolioImage, 'https://ujjwaldev.me/', 'https://github.com/ujjwal-0927/FullStack-Portfolio'],
+  ['Hybrid RAG Engine', 'Production-ready document Q&A engine combining vector search, BM25 retrieval, Cohere re-ranking, and real-time SSE token streaming.', ['FastAPI', 'React', 'ChromaDB', 'Cohere API'], ragImage, 'https://rag-frontend-rust.vercel.app/', 'https://github.com/ujjwal-0927/rag-frontend'],
+  ['Healthcare Booking Platform', 'Core Modify Booking modules and state management workflows for healthcare diagnostics.', ['React', 'Redux Toolkit', 'JavaScript', 'REST APIs'], null, '#', '#'],
+  ['Merchant Checkout & Settlement Engine', 'Cashfree payment processing workflows and transaction dashboards for web e-commerce management.', ['React', 'Node.js', 'Cashfree API', 'Express'], null, '#', '#']
+];
 
-  const cardVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
-      transition: { duration: 0.5, ease: 'easeOut' } 
-    },
-  };
-
-  const projects = [
-    {
-      title: 'Full-Stack Portfolio AI Avatar',
-      description: 'Interactive developer portfolio featuring a custom conversational AI assistant that dynamically queries background, skills, and project data.',
-      technologies: ['React', 'FastAPI', 'Python', 'Gemini API', 'Tailwind CSS'],
-      image: portfolioImage,
-      live: 'https://ujjwaldev.me/',
-      github: 'https://github.com/ujjwal-0927/FullStack-Portfolio'
-    },
-    {
-      title: 'Hybrid RAG Engine',
-      description: 'Production-ready document Q&A engine combining dense vector search, sparse lexical retrieval (BM25), and Cohere re-ranking with real-time SSE token streaming.',
-      technologies: ['FastAPI', 'React', 'ChromaDB', 'Cohere API', 'Gemini 3.6 Flash', 'Tailwind CSS'],
-      image: ragImage,
-      live: 'https://rag-frontend-rust.vercel.app/',
-      github: 'https://github.com/ujjwal-0927/rag-frontend'
-    },
-    {
-      title: 'Healthcare Booking Platform (Flebo.in)',
-      description: 'Engineered core Modify Booking modules and state management workflows using React and Redux Toolkit for healthcare diagnostics.',
-      technologies: ['React', 'Redux Toolkit', 'JavaScript', 'Tailwind CSS', 'REST APIs'],
-      image: 'https://via.placeholder.com/640x420/7c3aed/ffffff?text=Healthcare+Aggregator',
-      live: '#',
-      github: '#'
-    },
-    {
-      title: 'Merchant Checkout & Settlement Engine',
-      description: 'Integrated Cashfree payment processing workflows and transaction dashboards for web e-commerce management.',
-      technologies: ['React', 'Node.js', 'Cashfree API', 'Express', 'Tailwind CSS'],
-      image: 'https://via.placeholder.com/640x420/059669/ffffff?text=Merchant+Checkout',
-      live: '#',
-      github: '#'
-    }
-  ];
-
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  return (
-    <section id="projects" className="bg-slate-950 pb-16 sm:pt-20 ">
-      <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
-        {/* Header Section */}
-        <motion.div 
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.5 }}
-          className="mb-12 max-w-2xl"
-        >
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-indigo-400">Featured Projects</p>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-100 sm:text-4xl leading-tight">
-            Full-stack architectures & AI integrations.
-          </h2>
-        </motion.div>
-        
-        {/* Animated Projects Grid */}
-        <motion.div 
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          className="grid gap-8 lg:grid-cols-2"
-        >
-          {projects.map((project, index) => (
-            <motion.article 
-              key={index} 
-              variants={cardVariants}
-              className="group overflow-hidden rounded-3xl border border-slate-800 bg-slate-900/80 shadow-2xl shadow-indigo-950/20 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-slate-700 flex flex-col justify-between"
-            >
-              <div>
-                <div className="relative overflow-hidden">
-                  <img 
-                    src={project.image} 
-                    alt={project.title} 
-                    className="h-64 w-full object-cover transition duration-500 group-hover:scale-105" 
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
-                </div>
-
-                <div className="space-y-4 p-6 sm:p-8">
-                  <div className="flex items-center justify-between gap-4">
-                    <span className="rounded-full bg-indigo-500/10 border border-indigo-500/20 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-indigo-400">
-                      Featured
-                    </span>
-                    <div className="flex gap-2">
-                      <a 
-                        href={project.live} 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="rounded-xl border border-slate-700/60 bg-slate-800/80 px-3.5 py-1.5 text-xs font-semibold text-slate-200 transition hover:bg-slate-700 hover:text-white"
-                      >
-                        Live
-                      </a>
-                      <a 
-                        href={project.github} 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="rounded-xl bg-indigo-600 px-3.5 py-1.5 text-xs font-semibold text-white transition hover:bg-indigo-500 shadow-md shadow-indigo-600/20"
-                      >
-                        Code
-                      </a>
-                    </div>
-                  </div>
-
-                  <div className="space-y-2">
-                    <h3 className="text-xl font-bold text-slate-100 group-hover:text-indigo-400 transition-colors">
-                      {project.title}
-                    </h3>
-                    <p className="text-sm leading-relaxed text-slate-400">{project.description}</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="p-6 sm:p-8 pt-0">
-                <div className="flex flex-wrap gap-1.5">
-                  {project.technologies.map((tech, idx) => (
-                    <span 
-                      key={idx} 
-                      className="rounded-lg border border-slate-700/50 bg-slate-800/50 px-2.5 py-1 text-[11px] font-medium text-slate-300"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </motion.article>
-          ))}
-        </motion.div>
-
-        {/* CTA Button */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-12 flex justify-center"
-        >
-          <button
-            type="button"
-            onClick={() => scrollToSection('contact')}
-            className="inline-flex rounded-2xl border border-slate-700 bg-slate-900 px-8 py-4 text-sm font-semibold text-slate-200 shadow-lg transition hover:border-slate-600 hover:bg-slate-800"
-          >
-            Want to build something together? Reach out!
-          </button>
-        </motion.div>
+const Projects = () => (
+  <section id="projects" className="border-b border-paper/10 bg-ink px-6 py-14 text-paper sm:px-8 lg:px-12 lg:py-16">
+    <div className="mx-auto max-w-7xl">
+      <p className="font-mono text-xs uppercase tracking-[0.18em] text-accent">04 — Work</p>
+      <h2 className="mt-3 max-w-3xl font-display text-4xl leading-[0.98] tracking-tight sm:text-5xl">Selected projects, in context.</h2>
+      <div className="mt-9 border-t border-paper/20">
+        {projects.map(([title, description, technologies, image, live, github], index) => (
+          <motion.article key={title} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className={`group relative grid gap-4 border-b border-paper/20 py-5 transition-colors hover:bg-[#24221F] sm:grid-cols-[auto_0.08fr_0.34fr_0.34fr_auto] sm:items-center ${index === 0 ? 'border-l-4 border-l-accent pl-4' : ''}`}>
+            {image ? <img src={image} alt="" className="h-14 w-20 object-cover grayscale transition duration-300 group-hover:grayscale-0 sm:h-16 sm:w-24" /> : <span className="hidden h-16 w-24 bg-paper/10 sm:block" />}
+            <span className="font-mono text-xs text-accent">0{index + 1}</span>
+            <h3 className="font-display text-2xl">{title}</h3>
+            <p className="max-w-md text-sm leading-relaxed text-paper/60">{description}</p>
+            <div className="flex items-center gap-4 sm:justify-end">
+              <span className="hidden font-mono text-[11px] text-paper/50 lg:block">{technologies.slice(0, 2).join(' · ')}</span>
+              <a href={live} target="_blank" rel="noopener noreferrer" className="font-mono text-xs uppercase tracking-wider text-paper hover:text-accent">View <FaArrowUp className="ml-1 inline rotate-45" /></a>
+              <a href={github} target="_blank" rel="noopener noreferrer" className="font-mono text-xs uppercase tracking-wider text-paper hover:text-accent">Code</a>
+            </div>
+          </motion.article>
+        ))}
       </div>
-    </section>
-  );
-};
+      <p className="mt-5 font-mono text-[11px] text-paper/40">Hover a row to reveal the project detail.</p>
+    </div>
+  </section>
+);
 
 export default Projects;

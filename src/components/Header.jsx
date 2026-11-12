@@ -50,10 +50,10 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 border-b ${
+      className={`sticky inset-x-0 top-0 z-50 transition-all duration-300 border-b ${
         scrolled
-          ? 'border-slate-800/80 bg-slate-950/85 backdrop-blur-xl shadow-2xl shadow-black/40 py-3'
-          : 'border-transparent bg-slate-950/40 backdrop-blur-md py-4'
+        ? 'border-paper/20 bg-ink py-3'
+        : 'border-transparent bg-ink py-4'
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 md:px-8">
@@ -65,21 +65,21 @@ const Header = () => {
           onClick={() => scrollToSection('hero')}
           aria-label="Scroll to top"
         >
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-indigo-500/30 bg-indigo-500/10 text-indigo-400 group-hover:scale-105 group-hover:border-indigo-500/60 transition duration-300">
+          <div className="flex h-10 w-10 items-center justify-center border border-paper/30 text-accent transition duration-300 group-hover:border-accent">
             <FaCode size={18} />
           </div>
           <div>
-            <span className="block text-lg font-bold tracking-tight text-white group-hover:text-indigo-400 transition-colors">
-              Ujjwal<span className="text-indigo-500">.dev</span>
+            <span className="block font-display text-2xl tracking-tight text-paper group-hover:text-accent transition-colors">
+              Ujjwal<span className="text-accent">.dev</span>
             </span>
-            <span className="block text-[11px] font-medium tracking-wide text-slate-400">
+            <span className="block font-mono text-[10px] uppercase tracking-wide text-paper/50">
               Full-Stack & AI Systems
             </span>
           </div>
         </button>
 
         {/* Desktop Navigation */}
-        <nav className="hidden items-center gap-1 rounded-full border border-slate-800/80 bg-slate-900/60 px-4 py-1.5 backdrop-blur-md md:flex">
+        <nav className="hidden items-center gap-5 border-l border-paper/20 pl-5 md:flex">
           {navItems.slice(1).map((item) => {
             const isActive = activeSection === item.id;
             return (
@@ -87,10 +87,10 @@ const Header = () => {
                 key={item.id}
                 type="button"
                 onClick={() => scrollToSection(item.id)}
-                className={`relative px-4 py-1.5 text-xs font-semibold tracking-wide transition duration-200 rounded-full ${
+                className={`relative px-1 py-1.5 font-mono text-[11px] uppercase tracking-wide transition duration-200 ${
                   isActive
-                    ? 'text-indigo-400 bg-indigo-500/10'
-                    : 'text-slate-300 hover:text-white hover:bg-slate-800/50'
+                    ? 'text-accent'
+                    : 'text-paper/60 hover:text-accent'
                 }`}
               >
                 {item.label}
@@ -102,10 +102,9 @@ const Header = () => {
         {/* Action Button & Mobile Toggle */}
         <div className="flex items-center gap-3">
           <motion.button
-            whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
             type="button"
-            className="hidden rounded-xl bg-indigo-600 hover:bg-indigo-500 px-5 py-2.5 text-xs font-semibold text-white shadow-lg shadow-indigo-600/25 transition-all md:inline-flex"
+            className="hidden border border-accent bg-accent px-5 py-2.5 font-mono text-[11px] uppercase tracking-wide text-paper transition-all hover:bg-paper hover:text-ink md:inline-flex"
             onClick={() => scrollToSection('contact')}
           >
             Get in Touch
@@ -113,7 +112,7 @@ const Header = () => {
 
           <button
             type="button"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-slate-800 bg-slate-900/90 text-slate-300 transition hover:border-slate-700 hover:text-white md:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center border border-paper/30 text-paper transition hover:border-accent hover:text-accent md:hidden"
             onClick={() => setIsOpen((state) => !state)}
             aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
           >
@@ -130,7 +129,7 @@ const Header = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25, ease: 'easeInOut' }}
-            className="overflow-hidden border-t border-slate-800/80 bg-slate-950/95 px-6 backdrop-blur-xl md:hidden"
+            className="overflow-hidden border-t border-paper/20 bg-ink px-6 md:hidden"
           >
             <div className="flex flex-col gap-1.5 py-4">
               {navItems.map((item) => (
@@ -138,10 +137,10 @@ const Header = () => {
                   key={item.id}
                   type="button"
                   onClick={() => scrollToSection(item.id)}
-                  className={`w-full rounded-xl px-4 py-3 text-left text-sm font-medium transition ${
+                  className={`w-full border-b border-rule px-4 py-3 text-left text-sm transition ${
                     activeSection === item.id
-                      ? 'bg-indigo-500/10 text-indigo-400 font-semibold border border-indigo-500/20'
-                      : 'text-slate-300 hover:bg-slate-900 hover:text-white'
+                      ? 'text-accent font-semibold'
+                        : 'text-paper/70 hover:text-accent'
                   }`}
                 >
                   {item.label}
